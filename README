@@ -8,3 +8,10 @@ The "cpp" subdirectory should build just fine.
 The "haskell" subdirectory has a broken target as an illustration of the problem.
 The "haskell_hack1" subdirectory requires you to run two code generation shell
 scripts manually before the tup targets will work (read the Tupfiles for details)
+
+Dependencies:
+linux
+bash
+tup
+libprotobuf-dev package (or whatever it is on your distro)
+hprotoc (i.e. installed via cabal, haskell's language-specific source based package manager)
