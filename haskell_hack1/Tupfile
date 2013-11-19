@@ -2,14 +2,17 @@
 
 # This script performs an ugly an inefficient hack to generate a list of paths
 # It uses a bunch of temporary files, but this is (correctly) ignores by tup.
-: ../person.proto |> ./scrape_filenames.sh > paths.txt |> paths.txt
+# Note: Because tup sees the "preload" statements below, it will
+# refuse to run the following target, and you'll have to run the script manually.
+#: ../person.proto |> ./generate_paths.sh |> paths.txt
+# ./generate_paths.sh
 
 # This command cannot be run by tup, because it generates a tree symlinks.
-# You can run it manually, and then optionally add the symlinks to your
+# You have to run it manually, and then optionally add the symlinks to your
 # version control (and re-run, re-update every time you change the .proto file)
 # ./generate_symlink_tree.sh
 
-# Once you have run the above script, the code generation command should work.
+# Once you have run the above scripts, the code generation almost works...
 # hprotoc is tricked via symlinks to generate the files in the current directory.
 # Unfortunately, we ~still have the problem that tup requires us to specify the outputs...  
 #: ../person.proto |> hprotoc -I.. --proto_path=.. --haskell_out=symlink_tree person.proto |> 
@@ -21,3 +24,7 @@ preload symlink_tree
 preload symlink_tree/Person
 run generate_build_command.sh
 
+# After hours of work and 26 lines of unportable cryptic bash (acording to cloc),
+# we finally have some code generated haskell protobufs.
+
+# TODO: figure out how to actually compile the protobufs...

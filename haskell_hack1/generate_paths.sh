@@ -5,7 +5,7 @@
 mkdir dummy
 (
 cd dummy
-hprotoc -I../../ --proto_path=.... --haskell_out=. person.proto |& grep ".hs"
-)
+hprotoc -I../../ --proto_path=.... --haskell_out=. person.proto |& grep ".hs" 
+) > paths.txt
 rm -rf dummy
 
