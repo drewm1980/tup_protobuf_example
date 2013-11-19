@@ -2,3 +2,9 @@ This repo just contains sample code to demonstrate
 ways of dealing with tup's restrictions on where
 build targets can reside.  Google protocol buffers
 are used as a canonical example.
+
+Note:
+The "cpp" subdirectory should build just fine.
+The "haskell" subdirectory has a broken target as an illustration of the problem.
+The "haskell_hack1" subdirectory requires you to run two code generation shell
+scripts manually before the tup targets will work (read the Tupfiles for details)
