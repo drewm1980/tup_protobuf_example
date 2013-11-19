@@ -1,7 +1,10 @@
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <stdint.h>
 using namespace std;
+
+#include "person.pb.h"
 
 // Write a toy protobuf to a file.
 int main(int argc, char **argv) 

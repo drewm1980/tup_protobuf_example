@@ -1,0 +1,4 @@
+This repo just contains sample code to demonstrate
+ways of dealing with tup's restrictions on where
+build targets can reside.  Google protocol buffers
+are used as a canonical example.

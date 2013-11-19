@@ -1,5 +1,17 @@
+message Parasite {
+	required string species = 1;
+	required int32 population = 2;
+}
+
+message Pet {
+	required string species = 1;
+	required string name = 2;
+	optional Parasite parasite = 3;
+}
+
 message Person {
   required int32 id = 1;
   required string name = 2;
   optional string email = 3;
+  optional Pet pet = 4;
 }

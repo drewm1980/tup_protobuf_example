@@ -1,7 +1,10 @@
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <stdint.h>
 using namespace std;
+
+#include "person.pb.h"
 
 // Read a toy protobuf from a file.
 int main(int argc, char **argv) 

@@ -1,0 +1,16 @@
+.gitignore
+
+# For C++ protobufs from a single file, protobufs are also generated in one file,
+# and manually specifying the outputs need not be aware of the internal hierarchy.
+: ../person.proto |> protoc --proto_path=.. --cpp_out=. ../person.proto |> person.pb.h person.pb.cc
+
+# Compile the code generated protobuf into a c++ library
+: person.pb.cc person.pb.h |> g++ -c person.pb.cc -o person.pb.o |> person.pb.o
+
+# Compile some toy code that uses the protobuf
+: write.cpp person.pb.o |> gcc write.cpp person.pb.o -o write -lprotobuf |> write
+: read.cpp person.pb.o |> gcc read.cpp person.pb.o -o read -lprotobuf |> read
+
+# Run the compiled codes to see if they work
+: write |> ./write |> person.pb
+: read person.pb |> ./read >> foo |> foo
