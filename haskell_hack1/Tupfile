@@ -1,0 +1,23 @@
+.gitignore
+
+# This script performs an ugly an inefficient hack to generate a list of paths
+# It uses a bunch of temporary files, but this is (correctly) ignores by tup.
+: ../person.proto |> ./scrape_filenames.sh > paths.txt |> paths.txt
+
+# This command cannot be run by tup, because it generates a tree symlinks.
+# You can run it manually, and then optionally add the symlinks to your
+# version control (and re-run, re-update every time you change the .proto file)
+# ./generate_symlink_tree.sh
+
+# Once you have run the above script, the code generation command should work.
+# hprotoc is tricked via symlinks to generate the files in the current directory.
+# Unfortunately, we ~still have the problem that tup requires us to specify the outputs...  
+#: ../person.proto |> hprotoc -I.. --proto_path=.. --haskell_out=symlink_tree person.proto |> 
+
+#... the tup way of doing this is via a runfile.
+# we need the preload, or tup will complain about our generate_build_command
+#   calling readdir on symlink_tree when it scrapes it.
+preload symlink_tree
+preload symlink_tree/Person
+run generate_build_command.sh
+
