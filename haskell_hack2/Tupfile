@@ -1,0 +1,10 @@
+.gitignore
+
+# Since the names of the outputs of hprotoc are known, you can manually maintain a list of them in your tupfile.
+# Avoiding this duplication would still entail scripts like
+# generate_paths.sh and generate_build_command.sh from hack2.
+# However, IMHO, the symlink part was the worst part of hack2.
+HPROTOC_OUTPUTS=./Person/Parasite.hs ./Person/Pet.hs ./Person/Person.hs ./Person.hs
+
+: ../person.proto |> hprotoc -I .. --proto_path =.. --haskell_out=. person.proto |> $(HPROTOC_OUTPUTS)
+

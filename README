@@ -9,6 +9,9 @@ The "haskell" subdirectory has a broken target as an illustration of the problem
 The "haskell_hack1" subdirectory requires you to run two code generation shell
 scripts manually before the tup targets will work (read the Tupfiles for details)
 
+*IMPORTANT UPDATE*: In recent versions of tup, the restriction on where files can placed
+has been lifted, removing ~most of the hassle with code generated targets. This is illustrated in the "haskell_hack2" subdirectory.
+
 Dependencies:
 linux
 bash
